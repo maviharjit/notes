@@ -1,0 +1,34 @@
+openstack course udemy
+openstack.org
+openstack is IaaS
+add tutor to my linkedin
+http://tetranoodle.com/courses/
+https://en.wikipedia.org/wiki/OpenStack
+
+
+rackspace and NASA started the openstack intitiative
+openstack is easily installed using "packstack"
+
+packstack uses puppet to automatically provision openstack
+for proof of concept you can install openstack in a hypervisor
+
+openstack has various components providing various services.
+Compute (Nova)
+Networking (Neutron)
+Block Storage (Cinder)
+Identity (Keystone)
+Image (Glance)
+Object Storage (Swift)
+Dashboard (Horizon)
+Orchestration (Heat)
+
+# installation
+since centos is so close to redhat, lets do it on centos 7.2 VM
+install packstack. available on authors github
+
+
+make sure following three services  are running once openstack installation finishes
+systemctl | egrep "rabbitmq-server|httpd|mariadb"
+# if they are not "loaded active running" then restart like following
+systemctl restart rabbitmq-server.service
+

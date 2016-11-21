@@ -1,0 +1,74 @@
+Python Course
+python --version
+python3 --version
+is high level, interpretive, oo lang
+youtube, bittorrent, instagram, google, reddit
+
+idle-python3.5
+
+print("hello world")
+
+# open a new file
+print("hello")
+# run as module
+
+hello*3
+# hellohellohello
+
+
+he in "hello"
+# true
+
+
+w in "hello"
+#false
+# lists #
+
+
+mylist = [1, 2, 3, "harjit"]
+print(mylist)
+
+
+mylist.index("harjit")
+#3
+mylist.append("harjit")
+
+
+mylist.count("harjit")
+#2
+
+
+mylist.remove("harjit")
+mylist.reverse()
+mylist.sort()
+
+
+#dictionary #
+
+
+
+
+mydict = {}
+ages = {"ram": 20, "sham": 25, "sita": 23}
+ages
+ages['rama kant'] = 45
+ages['sham']
+
+
+del ages['sita']
+
+
+# tuples #
+
+python class can have class variables which are accessible from all instances of a class
+
+;ython instance variables can be accessed from outside unlike java where they can only be accessed thru class methods
+
+tkinter is a wrapper around tk which is a wrapper around tcl
+it is for gui development using python
+
+
+
+
+
+

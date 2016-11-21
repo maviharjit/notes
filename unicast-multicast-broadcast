@@ -1,0 +1,15 @@
+unicase, multicase and broadcase
+
+------------------------------------------------------------
+| TYPE      | ASSOCIATIONS     | SCOPE           | EXAMPLE |
+------------------------------------------------------------
+| Unicast   | 1 to 1           | Whole network   | HTTP    | 
+------------------------------------------------------------
+| Broadcast | 1 to Many        | Subnet          | ARP     |
+------------------------------------------------------------
+| Multicast | One/Many to Many | Defined horizon | SLP     |
+------------------------------------------------------------
+| Anycast   | Many to Few      | Whole network   | 6to4    |
+------------------------------------------------------------
+
+http://serverfault.com/questions/279482/what-is-the-difference-between-unicast-anycast-broadcast-and-multicast-traffic

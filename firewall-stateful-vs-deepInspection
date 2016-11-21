@@ -1,0 +1,20 @@
+stateful firewall vs deep packet inspection firewall aka WAF
+
+An open sourced Web Application Firewall for the Apache Webserver named Mod_Security can be found at http://www.modsecurity.org
+
+SPI works at the network layer by examining a packet's header and footer in addition to ensuring the packet belongs to a valid session.
+
+How Secure is SPI?
+This type of security simply controls incoming traffic, and wouldn't be able to prevent attacks from innocuous Web browsing, spyware, adware, trojans etc.
+
+How does DPI work?
+As well as looking at the header, footer, source and destination of incoming packets, DPI also examines the data part of the packet, searching for illegal statements and pre-defined criteria and making a decision on whether or not to let it through based on the content
+
+How Secure is DPI?
+This type of security will guard against attacks from trojans, spyware, and malware etc. which are increasingly common and are obtained through seemingly innocuous Web browsing by end-users.
+
+ Web Application Firewalls are often called 'Deep Packet Inspection Firewalls' because they look at every request and response within the HTTP/HTTPS/SOAP/XML-RPC/Web Service layers. Some Web Application Firewalls look for certain 'attack signatures' to try to identify a specific attack that an intruder may be sending, while others look for abnormal behavior that doesn't fit the websites normal traffic patterns. Web Application Firewalls can be either software, or hardware appliance based and are installed in front of a webserver in an effort to try and shield it from incoming attacks.
+
+Information on the types of 'signatures' that a web application firewall may use can be found in the "Fingerprinting Port 80 Attacks" papers in our Articles section
+
+An open sourced Web Application Firewall for the Apache Webserver named Mod_Security can be found at http://www.modsecurity.org

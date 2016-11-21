@@ -1,0 +1,60 @@
+OSI layer
+Application, Presentation, Session, Transport, Network, data link, physical
+netscape came up with SSL
+SSL termination is expensive, hence don't do it on origin servers.
+Instead place a device in front which can also act as a load balancer.
+This is called SSL off load
+
+application layer
+this is all customer cares about. that is why they buy router n switches
+TFTP which is unreliable but faster. service is not guaranteed. UDP
+
+presentation
+
+session layer
+setup and teardown
+Intrusion Detection
+IPS Intrusion Prevention Systems
+
+Transport layer
+segmenting data and reassembling
+guaranteed delivery
+TCP sliding window. max 15 segments sent at one time.
+
+with advent of internet long distance became free coz it was packetized
+voice and data converged.
+
+voice and video uses UDP since your have 150 milliseconds to make it sound right.
+a voice call may be 8k payload. very small
+video call is big and cant be retransmitted. thats why robot dance
+Cisco's A6 chip is programmable thru software. so they can give today's features on yesterdays's hardware
+
+cisco sold wholistic solutions from start to sink
+notel was number one in voice at one time
+avaya had best pbx one time but not anymore
+
+IT dept. is a cost centre not a revenue centre
+
+Network layer. layer 3. think packets. based on IP addresses. routers
+network to network
+moves data in packets
+IP, router, DHCP
+we can thank microsoft for DHCP
+BYOD. bring your own device
+packet is like an envelope. an address and a payload
+addresses are for source and destination
+
+data link. think frames. layer 2. based on MAC addresses. switching
+segment. device to device
+packet from layer 2 is placed into (encapsulated) data link frame
+37% of cisco revenue is from switching
+error detection is done here. this is the only place where error detection is done
+each frame as a FCS (Frame check sequence) AKA CRC appended to it. 
+if framing errors are caught the frame is discarded.
+
+physical
+copper, fibre, radio
+fibre optic distances can go upto 100km between switches
+through put is yet to be determined
+you could push 10G thru one wavelength of light and another 10G thru another wavelenght of light and so on.
+

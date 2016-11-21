@@ -69,7 +69,7 @@ RAM: 2G
 Storage: 10G
 NIC: 2
 
-we use a minimal installation of 64 bit linux as hypervisor for this environment
+we use a minimal installation of 64 bit linux for this environment on a VM
 
 # installation
 since centos is so close to redhat, lets do it on centos 7.2 VM

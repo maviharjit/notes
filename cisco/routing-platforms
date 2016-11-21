@@ -1,0 +1,63 @@
+routing platforms
+https://www.youtube.com/watch?v=DxsJS0cXoV4
+
+to connect branch offices to HQ, where you have following requirements
+ISR (Integrated Services Router) G2 routers 
+One box can do all the following
+
+requirements for each branch office
+Switch
+WAN
+WLAN
+Security
+    Identity Service, AAA, IPS, VPN, FW
+Voice
+   Provision voice, Voice mail, PSTN, Jabber, Webex, Video
+Server for PoS
+       PoE
+
+ISR has many cool things
+multicore processor on motherboard, run ios, FW and VPN is baked in 
+same chip as ASA firewall. biggest ASA can provide 20G of firewall
+
+WAN acceleration is in ios for small sites
+all features are in ios you enable them via license
+WLAN is built in and supports 10 access points.
+voice is CME inside ios
+it can terminate PSTN connection using DSP
+
+Cisco Unified CME Overview. Cisco Unified Communications Manager Express (formerly known as Cisco Unified CallManager Express) is a call-processing application in Cisco IOS software that enables Cisco routers to deliver key-system or hybrid PBX functionality for enterprise branch offices or small businesses
+can put upto 4 analog phone and upto 4 PRIs i.e 96 phone calls to outside world
+
+one call fixes it all instead of multiple vendors
+all three architectures gather on this one box
+
+cisco features are a big differentiators when compared to competition
+cisco has three groups of routers
+
+branch office has different requirements than HQ
+stateful firewall
+
+Search Results
+In computing, a stateful firewall is a network firewall that tracks the operating state and characteristics of network connections traversing it. The firewall is configured to distinguish legitimate packets for different types of connections.
+ 
+voice bridges, video bridges
+leasing equipment is a very attractive option for customers
+FXO and FXS
+
+
+for Aggregation in HQ
+ASR 1000
+cisco created their own processor for it. the quantun flow processor. took millions of dollars. it has 40 cores. each core has 4 threads. took cisco 5 years.
+
+GSR - Gigabit switching router
+catalyst 6500.
+
+there are more router that make up the
+IP core of a service provider
+
+In telecommunication, provisioning involves the process of preparing and equipping a network to allow it to provide (new) services to its users. ... give users access to data repositories or grant authorization to systems, network applications and databases based on a unique user identity.
+
+
+
+

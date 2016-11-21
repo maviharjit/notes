@@ -1,0 +1,152 @@
+telephony basic
+collaboration was a religious war
+long distance charges were big
+voice and data converged
+siemens, alcatel, nortel, avaya all had a significant investment in traditional technologies while cisco had a clean slate.
+cisco  changed the world of PBX. IP telephony took off
+PSTN was first global network
+
+phone -> pbx -> PSTN -> pbx on other side
+                    \                             \
+                      \                              \
+                        \                               \ 
+                            \                             \  
+PC -> switch -> router -> WAN ->router on other side
+earlier on "toll bypass" was invented. 
+pbx 1 talked to router once and voice call tried to use the data path first if bandwidth allowed it. least cost routing
+
+Voice guys did bowling
+IT were golfers
+
+voice people understood business better since they were engaged more with customer. IT guys were just locked behind a door working with a server.
+
+PBXes had dial plans
+you paid toll charge per min once the call was established. price was close to a dollar per min.
+
+voice over technology i.e.
+voice over ATM, voice over Frame Relay, voice over IP
+
+voice over telephony or voice over ip is different from IP telephony
+
+IP telephony is voice as an application
+cisco deployed voice as an application
+
+there was a routing table in PBX before there was a router
+
+PBX had 5 parts
+1.
+trunk cards which connected to PSTN, FXO in VoiP jargon
+these could be PRI or analog
+cisco replaced it with router
+
+2,
+station cards which connected to phone, modems. FXS in VioP jagron
+cisco used swithes with PoE
+
+3,
+CPU which took care of provisioning and
+extension, features. RNA (ring no answer), dial plan, routing table
+cisco replaced it with server called call manager aka communications manager
+
+4.
+Tone cards like
+dial tone card, ring back card
+when you took phone off hook, CPU connected you to dial tone card so you hear tone and know that phone is working
+ring voltage was applied to your phone when someone called
+cisco replaced tone cards with a wav file and more apps
+
+5.
+TDM bus
+this guaranteed a certain number of simultaneous call e.g. 848
+
+if you used PBX from a certain vendor then you had to use their phones as well
+so they were proprietary in nature
+this replaced with QoS and security
+
+G3R was a great PBX
+
+SCCP Skinny client control protocol
+
+5 nines reliability = 5 mins downtime a year
+99.999 %
+
+how do you define system down time
+is it one card down or what
+industry std is 30% of all capacity
+
+avaya was number one in enterprise and nortel was number one too
+today cisco is number one
+
+customers dont want voice mail anymore
+
+IP phone are also declining
+soft phones on PC like jabber are popular
+IP Phone - > switch - > communications manager CM
+CM knows the MAC address of IP phone already
+
+when you pick up your IP phone off hook
+a single packet is sent to CM
+CM then starts the CDR (call data record)
+CM sends a single packet to your ip phone and tells it to play dial tone wav file
+then you dial number and CM looks up who you are trying to call
+is that phone on another call? , if yes does it has second line appearance etc etc
+if not CM tells the target phone to ring
+when the target phone answers the CM tell both phones to talk to each other
+two RTP streams. from a to b and b to a
+it is no longer going thru CM it is client to client
+when you hang up then CM is informed and CDR is updated.
+
+call outside?
+CM sees that you are trying to call outside so instructs the router(which is an IP endpoing) to push out dialed numbers to PSTN and once PSTN sets up the call 
+the router with IP end point talks to the IP phone at your desk 
+so there are essentially two calls
+one internal to your network. desk phone to router with IP end point
+router to your wife at home
+
+all tones are wav files in IP phone. ring tone, dial tone, busy tone
+
+when you want to send you phone calls across wan you want to use low bit rate
+so that 64k packet is squeezed down to 8k
+cisco put this special codec on all their phones and instructs them to use that low bit rate codec for call across wan link
+CM asks the router before establishing the calls if it can send that call over wan
+one CM can handle 40k calls 
+you can cluster 100 of these together so you can have 4 million phones in one network
+
+CM cluster
+with CM is called publisher and own the database
+second CM is called subscriber 
+this is done for the integrity of the database
+these could be virtual servers
+they can be 80 milli seconds apart
+halifax to calgary is 80 milli secongs and telus guaranteed it
+that is 3 quarters of the way thru the country
+
+you just need license to download CM server
+you can even let users pick their own phone numbers if you wanted.
+
+its not telecom and datacom any more. its just datacomm
+
+what if wan goes down? how can ip phone talk to CM server
+cisco created SRST. survival remote site telephony
+SRST is on all router, you just license it
+
+CUPS - cisco unified presence server
+CUC - cisco unity connection. an application server
+
+what is jabber
+once it was a company taht built a prop protocol
+cisco acquired it in 2008
+jabber evolved into XMMP protocol
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,84 @@
+switching fundamentals
+data people stole a lot of stuff from voice people
+since voice was around 70 years more than data
+
+Access Switches
+connect to desktops, printer etc
+one switch on each floor
+24, 48 ports
+catalyst 2960 or catalyst 4900
+
+access switches connect to bigger switches called. 
+Distribution Switches
+generally thru Fiber Optic cable
+since copper only goes 100 metres
+also it is a bigger pipe since you are connecting upto 48 Gigabit users 
+catalyst 4900
+
+Distribution Switches connect to 
+Core Switches which may connect to your data center
+
+when IP telephones came, PoE became a requirement
+cisco 3550 switches did PoE. power over ethernet
+it was called inline power
+the power was not enough though 15 watts
+so cisco came up with PoE+ 22 watts
+now cisco came up with UPoE 60 watts
+catalyst 4900
+cisco switches have a feature called energywise 
+energywise can monitor the power consumption, measure it and turn it off
+IT can now charge back other departments for electricity used on switching
+
+ASIC chip in the switch provides intellegence
+switches store MAC addresses and ports associated in CAM tables
+
+Cisco is working on next generation products like SDN now
+like software defined routers
+ARP cache is 300 second or 5 mins
+
+by default every switch has a vlan for voice. vlan 200
+so you may have a voice vlan, video vlan, mgmt vlan, dev, stage, prod etc
+cisco switches have a network emision control
+so they can see if the device has latest updates and what not
+if not then the device is placed in a special vlan called remediation vlan
+think of it as a quarantine vlan
+then a window is popped on client and he is advised taht 
+he can enable his/her antivirus and then can use network 
+vlan initially was done by port but now it can also be done by your login.
+
+then cisco came up with vlan trunking
+so all vlan s could be carried across from one switch to another instead of wasting two port for connecting each vlan. when switch ports are $400 each.
+
+EtherChannel is a port link aggregation technology or port-channel architecture used primarily on Cisco switches. It allows grouping of several physical Ethernet links to create one logical Ethernet link for the purpose of providing fault-tolerance and high-speed links between switches, routers and servers.
+
+enterprise do most of their stuff in switches while service providers do most on router. service providers use switches to mostly fan out
+
+then cisco came up with layer 3 switch
+they just put a router into a switch
+hence they were able to do inter vlan routing
+70k PPS (packets process per second) now goes to 1 million PPS
+latest switches can do 12 million PPS. light speed.
+cost of routing is now insignificant
+
+layer 2 switch can assign vlans not route between them
+layer 3 switch can assign vlans and route between then
+
+a switch may be standalone or a chassis based. (4500)
+they have supervisor boards
+supervisor runs the ios
+you have two sup boards for redundancy and testing while upgrading software on them
+you also have line cards for ports
+so you order yr chassis which has power supplies and supervisor card
+then you build your own switch using line cards
+maybe you want to use it as access switch then add a lot of 24 port line cards
+or use it as distribution switch or core switch
+
+cisco 6500 brought 2 billion $ in one quarter
+now nexus can go upto 15 Terra bytes. nexus are data center/ core switches
+
+
+
+
+
+
+

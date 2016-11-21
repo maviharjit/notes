@@ -22,6 +22,9 @@ Object Storage (Swift)
 Dashboard (Horizon)
 Orchestration (Heat)
 
+# to try openstack in the cloud
+http://trystack.org/
+
 # installation
 since centos is so close to redhat, lets do it on centos 7.2 VM
 install packstack. available on authors github

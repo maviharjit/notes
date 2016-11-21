@@ -25,6 +25,52 @@ Orchestration (Heat)
 # to try openstack in the cloud
 http://trystack.org/
 
+# install on your system
+# hardware requirements
+open stack needs at least three nodes
+controller node, network node, compute node
+there are more optional node
+block storage node 1, object storage node 1, object storage node 2
+
+conroller node
+CPU: 1-2
+RAM: 8G
+Storage: 100G
+NIC: 1
+
+network node
+CPU: 1-2
+RAM: 2G
+Storage: 50G
+NIC: 3
+
+compute node
+CPU: 2-4+
+RAM: 8G+
+Storage: 100G+
+NIC: 2
+
+# hardware requirement for a Proof of Concept installation with core services and few cirrOS VM instances
+conroller node
+CPU: 1
+RAM: 2G
+Storage: 5G
+NIC: 1
+
+network node
+CPU: 1
+RAM: 512Mb
+Storage: 5G
+NIC: 3
+
+compute node
+CPU: 2
+RAM: 2G
+Storage: 10G
+NIC: 2
+
+we use a minimal installation of 64 bit linux as hypervisor for this environment
+
 # installation
 since centos is so close to redhat, lets do it on centos 7.2 VM
 install packstack. available on authors github

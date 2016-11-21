@@ -1,0 +1,61 @@
+course Burp
+http://aetherlab.net/
+https://portswigger.net/burp/
+test only your own systems. 
+stay ethical, stay safe
+
+test environment
+<!--
+kali linux and webgoat application
+install kali in a virtual box
+install tomcat6 or tomcat7 on kali linux vm
+   apt-get install tomcat6
+install webgoat on kali linux vm
+     mv Downloads/WebGoat-5.4.war   /var/lib/tomcat6/webapps/WebGoat.war
+service tomcat6 start
+
+set browser.fixup.alternate.enabled false in firefox (about:config)
+so that localhost is not automatically replaced with www.localhost
+localhost:8080/WebGoat/attack
+download tomcat-user.xml from google code site
+login guest/guest
+
+now you can find burp suite under web application proxies
+
+configure the burp proxy to listen on localhost:8000
+point your browser to use burp proxy using foxyproxy
+reload
+you should see traffic intercepted by burp proxy
+-->
+
+here is my new test environment
+install virtualbox
+two VMs kali and centos
+kali VM for pentest platform i.e. burp in this case
+centos VM to host webgoat which is the guinea pig application for pentesting
+
+set both VMs with two NICs
+first NIC with "host only networking"  so VMs can talk to each other and the host
+second NIC with "NAT networking" so VMs can go out to internet for updates and stuff
+you can edit network types in file->preferences->Network
+
+get the target machine (centos) ready
+# install web application container
+yum update && yum install tomcat
+
+# read up on webgoat and download webgoat application
+https://www.owasp.org/index.php/Category:OWASP_WebGoat_Project
+cd /tmp && wget https://github.com/WebGoat/WebGoat/releases/download/7.0.1/webgoat-container-7.0.1.war
+
+# deploy webgoat app
+mv /tmp/webgoat-container* /var/lib/tomcat/webapps/webgoat.war
+service tomcat start
+
+# test the webgoat
+browse to
+<centos-ip>:8080
+
+
+
+
+

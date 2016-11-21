@@ -1,0 +1,83 @@
+router fundamentals
+https://www.youtube.com/watch?v=AfW0E1WhO8M
+
+routers connect dissimilar networks
+connect HQ to branch office, you need a service provider and a WAN
+WAN connects LANs across geographical distances
+LAN is like a fire hose. WAN is drinking straw
+so you need QoS on this pipe
+
+layer 3 guy inside router uses a routing protocol to direct traffic
+routers talk to each other sharing new paths
+
+routing protocols
+RIP for small networks
+OSPF 
+BGP border gateway protocol for large networks like Internet
+
+cisco has its own prop protocol
+EIGRP enhanced interior gateway routing protocol
+
+cisco owns the edge router market. think branch office. like 70- 80 
+
+internet is the second global network.
+first one was PSTN
+
+one way to connect to branch office is direct circuit
+another way is thru Internet (thru VPN) which is a little cheaper
+VPN provides an encrypted tunnel between HQ and branch office
+
+VPN has two flavours
+Site to Site VPN - bandwidth is guaranteed
+Remote access VPN - nothing is guaranteed
+
+you can buy MPLS multi protocol label switching from service provider
+cisco created mpls
+
+Multiprotocol Label Switching (MPLS) is a type of data-carrying technique for high-performance telecommunications networks that directs data from one network node to the next based on short path labels rather than long network addresses, avoiding complex lookups in a routing table.
+
+what do you push thru pipe
+data, voice, video
+you can say to service provider taht out of my 2Mbps i watn 1Mbps for data. i dont need it super fast. so you wont get charged too much
+when data is put thru this. provider will put a label on it
+
+i want 256K for voice but make it faster. provider will do it and charge u more
+when voice is put thru this provider will put a label on it
+
+i want 768k for video but i want to make sure that it works.
+a little more important than voice and bigger than voice
+so he will charge you even more
+
+now you can push QoS thru service providers network just like your LAN and unlike WAN or VPN
+
+service providers want to get away from T1 etc which is like 125Mbps since they like to resell the same bandwidth over and over again. so they dont want to sell you dedicated bandwidth.
+
+they want to oversubscribe service and make more money since noone is using their 100% bandwidth all the time
+
+you can goto several service providers and go from colorodo to perth
+you cant do this with frame relay
+
+SIP session initiation protocol
+The Session Initiation Protocol (SIP) is a communications protocol for signaling and controlling multimedia communication session such as voice and video calls. The most common applications of SIP are in Internet telephony, as well as instant messaging, over Internet Protocol (IP) networks.
+
+T1 is USA  is E1 in europe
+it was dsgined for 24 phone calls. 1.5 Mbps of connectivity
+T1 is layer 1.
+we now use it for data
+
+MPLS is awesome.
+
+A request for proposal (RFP) is a type of bidding solicitation in which a company or organization announces that funding is available for a particular project or program, and companies can place bids for the project's completion.
+
+in MPLS you can have upto 7 tags on your packets. called customer tags
+service providers refer to MPLS as MPLS VPN. its a misnomer since it is not encrypted.
+you can get the provider to encrypt it or encrypt it urself for cheap
+
+telepresence
+
+
+
+
+
+
+

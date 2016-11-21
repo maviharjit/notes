@@ -1,0 +1,63 @@
+security basics and products and value statement
+
+https://www.youtube.com/watch?v=E1BMgfyLOjM
+people can goto jail
+we want guests to have internet access but want to regulate and control it
+zero day exploit
+IPS
+collect information and disseminate information
+802.1x says that everyone on the network need to authenticate
+cisco calls it "network admissions  control"
+NAC appliance and ACS (AAA server)
+both of above are combined into the following product
+ISE Identity service engine
+PIX firewall is long gone. now we have the ASA
+ASA Adaptive Security Appliance
+
+ASA can do
+firewall, 
+VPN, 
+whatever you pick as third service
+you could pick IPS as a module or something else like content filtering
+cisco does not restrict where you go.
+you can goto www.whitehouse.com (bad site not where obama lives)
+that one is www.whitehouse.gov
+
+some companies limit outbound access due to liability and productivity issues
+cisco aquired ironport for web security appliance
+they are very granular
+they can let you visit your facebook page but stop you from chatting on it
+
+why people move to cloud
+collaboration, data applications, security
+security is too complicated for people to manage themselves
+
+you can filter outbound intellectual property and incoming threats
+security head answers to CEO. thats how important it is
+
+products
+cloud based security from ironport
+or security appliance in house
+
+reputation driven mitigation
+Denial of service
+cisco is high ranking in security 
+
+cisco swithches also have security features
+e.g. if one of the switchport is sending too much broadcast say 5% of the traffic then the switch can throw away the broadcast. throttle down the switchport and tell admin about it
+
+also they have DHCP snooping which means switch will watch your NIC go out and get an IP for you MAC address. the switch will remember this. so if someone is trying to do the man in the middle attach the switch will stop it
+
+security value statement
+CXO cares
+sometimes people report directly from IT
+ever heart about TJMax
+they lost 250k credit card numbers
+they had to stop trading their stock due to this
+
+security is a C level discussion. its that important
+
+PCI compliance
+sarbanes-oxlay comliance
+ISO 9002
+

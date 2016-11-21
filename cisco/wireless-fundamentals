@@ -1,0 +1,74 @@
+Wireless Fundamentals
+earliest phone 900MHz
+people could hear you. they were not secure
+
+then 2.4GHz. DSS. digital spread spectrum
+everybody got on it. so too much interference
+
+then we moved to 5GHz
+then DECT 6.0. it is outside spectrum of all other devices
+
+client getting wireless access is a two step process
+1. client associates with the access point (SSID). AP is the GW to the wired network.
+2. AP challenges the client for credentials. Shared key
+
+if the client has more than one access points available it can determine the best one by asking questions like. "how many users are connected to you" "what is your utilisation"
+
+AP sends your credentials to Tripple A (AAA) server
+Authentication, Authorisation, Accounting
+
+properly configured wireless is very secure
+
+data between client and AP is encrypted with a key that is rotated regularly.
+
+if a customer says "we dont do wireless. wiresless is insecure" then sell him wireless to prevent someone from bringing in an unauthorised wireless AP
+
+when laptop moves from one AP to another AP it is called roaming.during this time any download continues with 1 sec hiccup. SSO
+
+then cisco started doing voice over wireless. that 1 sec of re authenticating was 20 lifetimes for voice. hence the call dropped when you roamed from one cell to another
+so cisco aquired new company called airspace to fix this 1 sec issue
+they removed all the intelligence from AP and added a new device to the network called a controller.
+
+now this delay is down from 1 sec to 50 milli seconds. these are called light weight APs. now audio calls and video calls do not drop
+so light is right.
+wireless is like being on a hub not a switch
+ISE identity service engine. a new product
+now we can people have register their BYO device.
+you can put profiles on peoples devices.
+
+prime is a good software to troubleshoot cisco wireless stuff
+if you pay for MIBs you can manage anything by unlocking the advanced featuers.
+
+what interferes with wireless?
+other wireless devices, microwave ovens, bluetooth
+microwave ovens uses 2.4 GHz frequency for rubbing particles together and generating heat. we use same frequency with AP. only AP use 100 milli watts and microwave ovens use 1500 watts
+
+cisco AP have mini spectrum analyzers built in that can see noise and switch to another channel if one channel gets too crowded 
+
+2.4 GHz
+13 channels
+only 3 non overlapping channels
+1, 6, 11
+
+5GHz
+23 channels
+20 non overlapping channels
+
+802.11b,  2.4 GHz,   11mbs,  5.5 Mb thruput
+802.11g   2.4         54mb/s     25Mb
+802.11n   2.4/5                        100Mb
+folloing is coming soon. 2GHz will die then
+802.11 ac  5GHz                      1.3Gb will eventually goto 4Gb
+the way you get this high thru put is coz they are bonding the channels so you only get 9 channels instead of 20.
+
+iphone 4s has 802.11n  it can do b,g,n but has only 1 radio in it
+ipad also has   802.11n it can do b,a,g,n but has two radios in it. so i can do both 2.4GHz and 5GHz
+
+bluetooth is 2.4GHz so it wont bother new standard just like AM radio does not bother FM radio
+2.4GHz is the junk band. it already has saturation problems
+
+spatial streams. when signal from an AP bounce off walls and other objects and reach  the client as three different signals. the clients are  smart now and can use these for sending traffic thru all three.
+
+
+
+

@@ -1,0 +1,23 @@
+SSL versus TLS
+
+If the SSL vs TLS choice is not SSLv3 vs TLS v1.0+, what is it?
+
+There are two distinct ways that a program can initiate a secure connection with a server:
+
+    By Port (a.k.a. explicit): Connecting to a specific port means that a secure connection should be used.  For example, port 443 for https (secure web), 993 for secure IMAP, 995 for secure POP, etc.  These ports are setup on the server ready to negotiate a secure connection first, and do whatever else you want second.
+    
+    By Protocol (a.k.a. implicit): These connections first begin with an insecure “hello” to the server and only then switch to secured communications after the handshake between the client and the server is successful. If this handshake fails for any reason, the connection is severed.  A good example of this is the command “STARTTLS” used in outbound email (SMTP) connections.
+
+The “By Port” method is commonly referred to as “SSL” or “explicit” and the “By Protocol” method is commonly referred to as “TLS” or “implicit” in many program configuration areas.
+
+SSL TLSTLS (Transport Layer Security) and SSL (Secure Sockets Layer) are protocols that provide data encryption and authentication between applications and servers in scenarios where that data is being sent across an insecure network, such as checking your email (How does the Secure Socket Layer work?). The terms SSL and TLS are often used interchangeably or in conjunction with each other (TLS/SSL), but one is in fact the predecessor of the other — SSL 3.0 served as the basis for TLS 1.0 which, as a result, is sometimes referred to as SSL 3.1. With this said though, is there actually a practical difference between the two?
+
+
+SSL v3.0 is effectively “dead” as a useful security protocol.  Places that still allow its use for web hosting as placing their “secure web sites” at risk; Organizations that allow SSL v3 use to persist for other protocols (e.g. IMAP) should take steps to remove that support at the soonest software update maintenance window.
+
+If you setup an email program you will often see separate options for “no encryption”, “SSL”, or “TLS” encryption of you transmission.  This leads one to assume that TLS and SSL are very different things.
+
+In truth, this labeling is a misnomer.  You are not actually selecting which method to use (SSL v3 or TLS v1.x) when making this choice.  You are merely selecting between options that dictate how the secure connection will be initiated.
+
+No matter which “method” you choose for initiating the connection, TLS or SSL, the same level of encryption will be obtained when talking to the server and that level is determined by the software installed on the server, how that is configured, and what your program actually supports.
+

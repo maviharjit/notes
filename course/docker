@@ -1,0 +1,510 @@
+Docker Course
+
+#!/bin/bash
+# Delete all containers
+docker rm $(docker ps -a -q)
+# Delete all images
+docker rmi $(docker images -q)
+
+# to pull from a repository other than docker hub
+docker pull quay.io/nitrous/wordpress
+
+# load docker image from a file. e.g. busybox.tar
+docker rmi busybox
+docker load -i busybox.tar
+
+# you can also save images to file
+docker save -o busybox.tar busybox:latest
+
+# building yr own image
+mkdir anyname && cd anyname && touch Dockerfile
+vi Dockerfile
+docker build -t blauser/blaimage .
+docker image
+docker run blauser/blaimage
+
+# union file system is the file system used inside containers
+it enables layering functionality of docker images
+
+# volumes
+volumes are simply mount points which allow containers to write data to host os
+volumes are used to store following types of data
+ database data, application logs, CMS data
+
+--volumes-from
+is the best strategy mostly
+
+when not to use --volume-from
+readup again in the lecture slide
+
+# networking in docker
+host interface is bridged with docker virtual interface
+containers talk to dockers virtual interface
+
+each container has a loopback and a private interface
+networking types in containers
+1. closed container
+no access to outside world
+docker run --rm --net none busybox ifconfig -a
+docker run -d --name closedc  busybox nc -l 127.0.0.1:10000
+docker exec closedc ping 8.8.8.8
+
+2. bridged containers. (most popular and default) --net bridge
+docker run --rm busybox nc -l 0.0.0.0:10000
+or
+docker run -d --name bridgedc busybox nc -l 0.0.0.0:10000
+docker exec brigedc ping 8.8.8.8
+
+# containers name resolution
+--dns=8.8.8.8 --dns=8.8.4.4.
+docker --run -d --name webserver --hostname httpserver httpd
+docker ps
+docker exec webserver hostname
+
+you can use --add-host for spoofing dns for container
+
+# controlling connections to the containers i.e. port forwarding
+by default bridged containers are not accessible from outside world
+you can create explicit port forwarding using -p
+
+docker port somecontainername
+
+3. joined containers   --net container
+when containers share the same network interface
+
+4. open containers  --net host
+most open and insecure kind of containers
+runs programs on host's ports
+
+# how do containers know about each other
+
+# expose
+--expose 1111 --expose 2222
+exposes the port number to other containers on same network
+as opposed to whole world with -p
+
+inspect env of container using env commands
+
+# security and isolation
+limit resources that container may take
+-m 512m
+it is a limit not a reservation
+when limit is reached ps inside container may die
+hence use the --restart flag to resolve that situation
+
+# cpu allowance
+while running out of ram crashes the process and hence it can be restarted,
+running out of cpu makes the process wait indefinitely 
+assign cpu shares to a container
+--cpu-share 1024
+
+pin a container to a specific cpu
+--cpu-set 0
+--cput-set 0-2
+--cput-set 0,2
+
+stress is a load testing tool on linux
+consumes all CPU resources
+stress --cpu 1 --timeout 30s &
+htop
+
+# controlling access to devices. provide container access to host devices
+--privileged --device /dev/sr0:/dev/sr0
+this way you can mount the host cdrom inside the container
+
+# docker users
+to answer which user is container using, you have to create a container
+docker inspect --format="{{.Config.User}} myUser
+a black result means root user is being used
+
+# display the active id without allowing any scripts to cloak the reality
+docker run --rm --entrypoint "" busybox  id
+
+# changing default user
+docker run --user nobody busybox id
+docker run --user www-data.www-data busybox id
+
+# packaging software
+1. customise container to yr taste and then use commit to create new image
+
+# instantiate a container from busybox image and customize to yr taste
+docker run --name base_container busybox touch /welcome.txt
+
+# save the changes that you made to container, to an image
+docker commit base_container base_image
+
+# delete the exiting container
+docker rm -vf base_container 
+
+# run the new image and see if your custom changes presist
+docker run --rm base_image ls -l /welcome.txt
+
+
+# determining changes
+docker diff base_container
+A - Added
+D - Deleted
+C - Changed
+
+best practice to add yr signatures and commit message when committing to a container
+docker commit -a "@bigboymelb" -m "installed python 2.7" base_container ubuntupython
+
+# commit command options
+commit does not only save file system changes
+it also saves changes to env variables, mount points etc etc 
+
+# the union file system revisited
+union file systems uses layers 
+union file system uses "copy on write"
+it means when a file in some read only layer (not top most) get changed, this file is first copied to writable layer before any changes get applied
+this negatively impacts image size and performance
+
+# committ command and UFS
+an image is created from a group of layers
+the image id is the id of the topmost UFS layer
+docker tag
+
+# image layer sizes and limits
+docker layers are immutable
+so when you delete a file it is not really deleted, it is simply marked as deleted for that particular image so that the other images can still use it.
+layers may be shared among various images/containers
+
+docker images | grep python
+
+docker history bigboymelb/wpress:v3
+
+so if you removed a lot of packages from an image do not expect the image size to go down. rather the image size will increase instead.
+
+max number of layers in an image as per docker 42
+so you can make 42 changes in an image
+you can avoid this limitation by branching
+branching means going to a previous image and start from there.
+so instead of removing software, goto parent layer and customise
+
+# working with flat file systems
+docker run --name myContainer bigboymelb/wpress:v2
+
+# export the container to flat files
+docker export --output myContainer.tar myContainer
+tar -tvf myContainer.tar
+now you can extract this archive and make changes effectively bypassing the limit posed by UFS.
+
+# make changes to flat files
+mkdir /tmp/tmp1 && cp myContainer.tar $_
+tar xvf myContainer.tar
+make custom changes as per your taste
+rm myContainer.tar
+tar -cvf myContainer.tar .
+
+# import the flat files to docker image
+docker import - bigboymelb/wpress4 < /tmp/tmp1/myContainer.tar
+this image will have much smaller file size since it gets rid of layers
+
+## build automation
+vi Dockerfile
+# what is this Dockerfile for
+FROM ubuntu:latest
+RUN apt-get update
+RUN apt-get -y install python
+ENTRYPOINT ["python"]
+docker build -t bigboymelb/wpress:v4.3 .
+docker run --rm -it bigboymelb/wpress:v4.3
+
+Dockerfile must start with FROM
+the order of commands is not important
+
+From scratch
+is special keyword for creating an image from nothing
+and you can add the files later
+
+also Dockerfile may be named anything else you like
+and you can just pass the name using -f flag
+mv Dockerfile wpress.df
+dockerfile build -t bigbomelg/wpress -f wpress.df .
+-q is for quite mode
+---no-cache means do not use cache. download everything from scratch
+
+# a python case image
+.dockerfile contains all the files that should not be copied when an image is built
+vi .dockerignore
+base.df
+
+Dockerfile
+FROM ubuntu:latest
+RUN apt-get update && apt-get -y install python
+RUN groupadd -r -g 3000 worker && userad -rM -g worker -u 3000 worker
+ENV DATADIR="/data" VERSION="1.0"
+LABEL base.name="CSV to SQL" base.version=$VERSION
+WORKDIR $DATADIR
+ENTRYPOINT ["/data/script.py"]
+# ENTRYPOINT ["/data/script.py","arg1","arg2"]
+# ENTRYPOINT  /data/script.py  # cant specify args here 
+
+noticed we defined two env variables on one line
+this way docker wont need to create two layers for two env vars
+this is the best practice to create all env variables in one line
+
+# exploring base.df
+see this lecture again. i was not paying attention
+
+# the ONBUILD instruction
+see this lecture again. i was not paying attention.
+
+# distributing your image
+selecting your distribution channel
+
+# using a hosted registry
+dockerhub, amazon container registry, google container registry
+# saves your docker username and token NOT yr password
+docker login
+
+# after docker login you can use following
+docker push <your username>/<image name>:<tag>
+docker search
+
+# using automated builds to publish software
+for automated builds you need a registry and a Git repo
+Docker hub can work with both GitHub and Bitbucket since they both provide webhooks
+
+A WebHook is an HTTP callback: an HTTP POST that occurs when something happens; a simple event-notification via HTTP POST. A web application implementing WebHooks will POST a message to a URL when certain things happen.
+https://webhooks.pbworks.com/w/page/13385124/FrontPage
+read this again. with focus
+
+How do I implement WebHooks?
+Simply provide your users with the ability to submit their own URL, and POST to that URL when something happens. It's that simple. There are no specs you have to follow.
+
+# so workflow goes like below
+you make changes to your project in your local git repo, 
+then push your changes to github, (git push)
+github immediately notifies docker hub via webhook (which is an http post)
+dockerhub pulls the latest changes
+your latest docker image is now ready to be pulled (docker run)
+
+# create hosted repo using automated build
+mkdir someproject && cd $_
+git init
+git config --global user.email "mavi.harjit@gmail.com"
+git config --global user.name "bigboymelb"
+git remote add origin https://github.com/maviharjit/helloworld.git
+
+goto docker hub and link it to your github 
+i.e. create a new automated build
+
+git add Dockerfile
+git commit -m "Added Dockerfile"
+git push origin master
+
+# publishing to private registries that you host by yourself
+using an open source software called distribution
+
+# create your own private registry
+docker run -d -p 5000:5000 --restart=always --name private-registry registry:2
+
+# now lets build a container that echoes "im using private registry"
+# before that we need to inform docker that this image uses a  private registry instead of docker hub
+docker tag private-cont localhost:5000/hmavi/private-cont:latest
+docker push localhost:5000/hmavi/private-cont:latest
+
+# lets try our private registry
+docker rm hmavi/private-cont
+docker rmi hmavi/private-cont
+
+docker pull localhost:5000/hmavi/private-cont
+docker run -it --rm localhost:5000/hmavi/private-cont
+
+# manual image publishing
+# build a distribution system using ftp
+try it later. not important though
+
+# using GitHub as sole means of distribution
+i.e. use GitHub without using Docker hub
+git clone https://github.com/maviharjit/someimage.git
+git build -t bigboymelb/someimage . && docker run --rm -it bigboymelb/someimage
+
+Ideally use GitHub with Docker Hub so you have best of both worlds
+
+# Final project. 
+# Create a web application
+# a book store application using PHP and mysql
+Step 1
+# create mysql container with database and necessary tables
+docker run -d --name mysql -e MYSQL_ROOT_PASSWORD=admin mysql
+
+# run a temp container to act as mysql client
+docker run -it --rm --link mysql:mysql mysql sh -c 'exec mysql -hmysql -uroot -padmin'
+mysql> use bocker;
+mysql> create table books 
+(id int(6) unsigned auto increment primary key,
+title varchar(30) not null, 
+author varchar(30) not null,
+genre varchar(50),
+pubyear int(4) 
+);
+> exit
+
+# lets create the application container now
+mkdir bocker && cd $_
+copy the files for web application here and customise to yr taste
+vi Dockerfile
+FROM ubuntu:latest
+RUN apt-get update && apt-get -y upgrade
+RUN -y install apache2 php php-mysqli libapache2-mod-php7.0 
+RUN useradd -m -s /bin/bash -d /home/worker worker
+WORKDIR /var/www/html
+ADD css css
+ADD js js
+ADD templates templates
+COPY add.php add.php
+COPY create.php create.php
+COPY index.php index.php
+COPY update.php update.php
+COPY edit.php edit.php
+COPY delete.php delete.php
+RUN rm -f index.html
+RUN chmod -R worker /var/www/html
+USER root
+# run apache in foreground so container keeps running
+CMD ["apachectl","-D","FOREGROUND"]
+VOLUME ['/var/www/html']
+VOLUME ['/etc/apache2']
+
+# build the image
+docker build -t bigboymelb/bocker:latest . 
+
+docker run -d --name webapp --link mysql:mysql -p 8080:80 bigboymelb/bocker:latest
+
+docker ps
+ifconfig
+
+http://ip of localhost:8080
+start using the application e.g. add a new book.
+
+docker inspect webapp
+check the file path for volumes 
+you can customise the apache config or web application from volume
+
+summary
+lets populate perl python etc with hello world programs
+echo "# hello world perl" >> README.md
+# config per repo
+git init
+
+# config one time 
+git config --global user.email "mavi.harjit@gmail.com
+git config --global user.name "Harjit Mavi"
+git config --global credential.helper cache
+git config --global credential.helper 'cache --timeout=3600'
+
+# config per repo
+git add README.md
+git add hello-world.pl
+git commit -m "initial commit"
+git add remote origin https://github.com/maviharjit/perl.git
+git push -u origin master
+
+
+docker compose
+for creating and destroying multi container apps with one line
+https://docs.docker.com/compose/overview/
+
+Using Compose is basically a three-step process.
+1. Define your app’s env with a Dockerfile so it can be reproduced anywhere.
+
+2. Define the services that make up your app in docker-compose.yml so they can be run together in an isolated environment.
+3. run docker-compose up and Compose will start and run your entire app.
+
+a sample docker-compose.yml
+---------------------
+version: '2'
+services:
+  web:
+    build: .
+    ports:
+    - "5000:5000"
+    volumes:
+    - .:/code
+    - logvolume01:/var/log
+    links:
+    - redis
+  redis:
+    image: redis
+volumes:
+  logvolume01: {}
+
+common use cases
+----------------
+1. 
+dev environments
+
+2.
+ automated testing
+$ docker-compose up -d
+$ ./run_tests
+$ docker-compose down
+
+3. 
+single host deployments
+You can use Compose to deploy to a remote Docker Engine. The Docker Engine may be a single instance provisioned with Docker Machine or an entire Docker Swarm cluster.
+
+get started with docker compose
+https://docs.docker.com/compose/gettingstarted/
+
+# build project dir
+$ mkdir composetest && cd $_
+
+# build python based web app
+cat >> app.py
+from flask import Flask
+ from redis import Redis
+
+ app = Flask(__name__)
+ redis = Redis(host='redis', port=6379)
+
+ @app.route('/')
+ def hello():
+     redis.incr('hits')
+     return 'Hello World! I have been seen %s times.' % redis.get('hits')
+
+ if __name__ == "__main__":
+     app.run(host="0.0.0.0", debug=True)
+
+
+# create requirements.txt file
+cat >> requirements.txt
+ flask
+ redis
+
+# create Dockerfile
+FROM python:2.7
+ADD . /code
+WORKDIR /code
+RUN pip install -r requirements.txt
+CMD python app.py
+
+# build docker image
+docker build -t web .
+
+# define service
+cat >> docker-compose.yml
+    version: '2'
+    services:
+      web:
+        build: .
+        ports:
+         - "5000:5000"
+        volumes:
+         - .:/code
+        depends_on:
+         - redis
+      redis:
+        image: redis
+
+
+# build and run your app
+docker-compose up
+
+
+
+
+
+

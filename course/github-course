@@ -1,0 +1,68 @@
+github course
+short and sweet
+
+git provides
+version control systems
+collaboration
+cloud backup
+
+repository is a place where you store code
+as per best practice, each software project should have its own repo.
+
+lets create a new repo for bash
+https://github.com/maviharjit/bash
+
+stackoverflow is a good resource for programers
+using stackoverflow is an essential part of being a programmer
+
+mkdir mylocal-software-folder && cd $_
+git init
+
+.git folder implies that you have already setup git in that particular folder
+
+you may want to create the following files per project.
+
+README.md
+echo "# bash" >> README.md
+
+.gitignore
+files that you dont want to upload to github. e.g xcode specific exclude files
+.DS_Store
+.*xcurserstate
+project.xcworkspace/
+xcurserdata/
+
+you will always have a local repo and an online repo
+always keep track of which one you are working off
+
+# add local files to git repo
+git add --all
+git status
+git commit -m "initial commit"
+
+# tell you local git repo about the github repo
+git remote add origin https://github.com/maviharjit/bash
+
+# committing to github 
+git push -u origin master
+above is saying "push the code from my local repo i.e. master to remote i.e. origin
+git status
+
+
+# after you modify a file lets say README.md
+git status
+git add README.md
+git commit -m "Updated README.md"
+git push -u origin master
+
+discount coupon for intermediate level git course
+https://www.udemy.com/short-and-sweet-next-level-git-and-github-get-productive/?couponCode=GITHUB80
+
+
+create and populate following repo
+bash
+python
+linux-tools 
+   sed
+   opensslssl 
+   curl

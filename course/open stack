@@ -74,6 +74,8 @@ we use a minimal installation of 64 bit linux for this environment on a VM
 # installation
 since centos is so close to redhat, lets do it on centos 7.2 VM
 install packstack. available on authors github
+https://github.com/espiderinc/tutorial-openstack/blob/master/Packstack%20installation.txt
+
 
 
 make sure following three services  are running once openstack installation finishes

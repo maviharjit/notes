@@ -115,3 +115,5 @@ Adds or removes to the list of people you’ll be warned when they enter or quit
 
 /help channel
 /channel list
+/join #irssi
+/part

@@ -1,0 +1,117 @@
+IRC
+http://web.archive.org/web/20160419123133/http://www.irchelp.org/irchelp/ircprimer.html
+
+The slash is the default command character
+Commands are not case sensitive
+commands can be abbreviated to their first letters: “/SI” and “/sign ” stand for /SIGNOFF
+
+Anything that does not begin with “/irchelp/” is assumed to be a message to someone and will be sent to your current channel
+
+irssi
+to launch irc client
+
+/quit 
+exit irssi session
+
+/help
+
+ Table 1:  Editing keys
+        ----------------------
+           Key      Effects
+           ~~~      ~~~~~~~
+            ^P      recalls previous command line
+            ^N      recalls next command line
+            ^F      moves forward one character
+            ^B      moves backward one character
+            ^A      moves the cursor to the beginning of the line
+            ^E      moves the cursor to the end of the line
+            ^D      deletes the character under the cursor
+            ^K      kills from the cursor to the end
+            ^Y      reinserts the last stretch of killed text
+            ^U      clears the whole line
+            ^L      redraws the screen
+
+
+
+
+
+
+        Table 2:  Editing commands
+        --------------------------
+           Keyword   Action
+           ~~~~~~~   ~~~~~~
+           !         recalls previous commands for re-editing
+           HISTORY   displays the command history
+           LASTLOG   lists the most recent messages
+           CLEAR     puts some white space on your screen
+
+   Table 4:  General commands
+                       --------------------------
+    Keyword   Action
+    ~~~~~~~   ~~~~~~
+    NICK      changes your nickname
+    QUIT      exits your IRC session, (same as BYE, SIGNOFF and EXIT)
+    HELP      prints help on the given command
+    WHOIS     displays information about someone
+    WHOWAS    displays information about someone who just left
+    AWAY      leaves a message saying you're not paying attention
+
+
+/NICK mynick
+/QUIT Lunch Time!
+/HELP HELP
+/WHOIS mynick
+/WHOWAS mynick
+/AWAY Gone to get a cup of coffee.
+
+        
+  Table 5: Private conversation commands
+                 --------------------------------------
+      Keyword  Action
+      ~~~~~~~  ~~~~~~
+      MSG      sends a private message
+      QUERY    starts a private conversation
+      NOTICE   sends a private message
+      NOTIFY   warns you of people logging in or out IRC
+      IGNORE   removes output from specific people off your screen
+
+
+ /MSG Nap This message is for Nap only.
+ /MSG Nap,Sorg This message for both Nap and Sorg.
+
+Two special case nicknames are defined. If the nickname is “,” (a comma), the message is sent to the last person who sent you a MSG. If the nickname is “.” (a period), the message is sent to the last person to whom you sent a message.
+
+ /QUERY Nap
+        *** Starting conversation with Nap
+
+
+ /QUERY
+ *** Ending conversation with Nap
+
+
+/NOTICE |
+services use this to send notices like reboot etc
+
+Adds or removes to the list of people you’ll be warned when they enter or quit IRC
+/NOTIFY Nap Nappy
+        *** Signon by Nap detected
+
+
+ /NOTIFY
+ *** Currently present: Nap
+ *** Currently absent: Nappy
+
+# connecting to third party IRC channels
+/connect irc.freenode.net
+/list channels
+/join #irssi
+
+/connect irc.linuxchix.org
+/help 
+/quote help list
+/nick mynick
+/join #beginner
+/part
+
+/help channel
+/channel list
